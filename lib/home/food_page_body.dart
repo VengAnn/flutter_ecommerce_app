@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_e_commerce_app_with_backend/utils/dimensions.dart';
 
 import '../utils/app_colors.dart';
 import '../widgets/big_text.dart';
@@ -62,15 +63,16 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   int currentPageValue = 0;
   @override
   Widget build(BuildContext context) {
+    // print("currentHeight: ${MediaQuery.of(context).size.height}");
     return Column(
       children: [
         // ignore: sized_box_for_whitespace
         Container(
-          height: 300,
-          //color: Colors.amber,
+          height: Dimensions.parentCarouselContainer, // height: 350,
+          // color: Colors.amber,
           child: CarouselSlider(
             options: CarouselOptions(
-              height: 250.0,
+              height: Dimensions.carouselContainer,
               viewportFraction: 0.8,
               initialPage: 0,
               enableInfiniteScroll: false,
@@ -80,7 +82,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               // autoPlayAnimationDuration: Duration(milliseconds: 800),
               autoPlayCurve: Curves.fastOutSlowIn,
               enlargeCenterPage: true,
-              enlargeFactor: 0.3,
+              enlargeFactor: 0.26,
               onPageChanged: (index, reason) {
                 currentPageValue = index;
                 setState(() {});
@@ -95,19 +97,23 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width * 0.8,
+
                         margin: const EdgeInsets.symmetric(horizontal: 5.0),
                         // decoration: const BoxDecoration(color: Colors.amber),
                         child: i, // Show imageList
                       ),
                       //
                       Positioned.fill(
-                        bottom: -20,
+                        bottom: -Dimensions.height20,
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: Container(
-                            width: MediaQuery.of(context).size.width / 1.5,
-                            height: 110,
-                            // margin: EdgeInsets.only(bottom: 0),
+                            height: Dimensions
+                                .carouselTextContainer, // maybe height equal: 110,
+                            margin: EdgeInsets.only(
+                              left: Dimensions.paddingLeft20,
+                              right: Dimensions.paddingLeft20,
+                            ),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15.0),
                               color: Colors.white,
@@ -130,49 +136,54 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               ],
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(Dimensions.padding7),
+                              // ignore: avoid_unnecessary_containers
                               child: Container(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const BigText(text: "Chinese Side"),
-                                    const SizedBox(height: 5.0),
+                                    BigText(
+                                      text: "Chinese Side",
+                                      size: Dimensions.fontSize20,
+                                    ),
+                                    SizedBox(height: Dimensions.height5),
                                     Row(
                                       children: [
                                         Wrap(
                                           children: List.generate(
                                             5,
-                                            (index) => const Icon(
+                                            (index) => Icon(
                                               Icons.star,
-                                              size: 18,
+                                              size: Dimensions
+                                                  .fontSize20, //size:20
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(
-                                          width: 10.0,
+                                        SizedBox(
+                                          width: Dimensions.width10,
                                         ),
                                         //
                                         SmallText(
                                           text: "4.5",
-                                          size: 16,
+                                          size: Dimensions.fontSize15,
                                         ),
-                                        const SizedBox(
-                                          width: 10.0,
+                                        SizedBox(
+                                          width: Dimensions.width10,
                                         ),
                                         SmallText(
                                           text: "1350",
-                                          size: 16,
+                                          size: Dimensions.fontSize15,
                                         ),
-                                        const SizedBox(
-                                          width: 10.0,
+                                        SizedBox(
+                                          width: Dimensions.width10,
                                         ),
                                         SmallText(
                                           text: "Comments",
-                                          size: 16,
+                                          size: Dimensions.fontSize15,
                                         ),
                                       ],
                                     ),
-                                    const SizedBox(height: 5.0),
+                                    SizedBox(height: Dimensions.height5),
                                     //
                                     Row(
                                       mainAxisAlignment:
@@ -181,20 +192,20 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                         IconAndTextReusableWidget(
                                           icondata: Icons.circle_sharp,
                                           text: "Normal",
+                                          sizeText: Dimensions.fontSize15,
                                           colorIcons: Colors.orange,
-                                          sizeText: 16.0,
                                         ),
                                         IconAndTextReusableWidget(
                                           icondata: Icons.location_on,
                                           colorIcons: Colors.green,
                                           text: "1.7km",
-                                          sizeText: 16.0,
+                                          sizeText: Dimensions.fontSize15,
                                         ),
                                         IconAndTextReusableWidget(
                                           icondata: Icons.access_time_rounded,
                                           colorIcons: AppColor.mainColor,
                                           text: "33min",
-                                          sizeText: 16.0,
+                                          sizeText: Dimensions.fontSize15,
                                         ),
                                       ],
                                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_app_with_backend/utils/dimensions.dart';
 
 // ignore: must_be_immutable
 class SmallText extends StatelessWidget {

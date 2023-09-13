@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app_with_backend/home/food_page_body.dart';
 import 'package:flutter_e_commerce_app_with_backend/utils/app_colors.dart';
+import 'package:flutter_e_commerce_app_with_backend/utils/dimensions.dart';
 import 'package:flutter_e_commerce_app_with_backend/widgets/big_text.dart';
 import 'package:flutter_e_commerce_app_with_backend/widgets/small_text.dart';
 
@@ -27,16 +28,17 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 children: [
                   Column(
                     children: [
-                      const BigText(
+                      BigText(
                         text: "Country",
                         color: AppColor.mainColor,
-                        size: 20,
+                        fontWeight: FontWeight.bold,
+                        size: Dimensions.fontSize15,
                       ),
                       Row(
                         children: [
                           SmallText(
                             text: "City",
-                            size: 15,
+                            size: Dimensions.fontSize15,
                           ),
                           const Icon(
                             Icons.arrow_drop_down,
@@ -46,15 +48,16 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     ],
                   ),
                   Container(
-                    width: 50,
-                    height: 50,
+                    width: Dimensions.iconSizeHeight45,
+                    height: Dimensions.iconSizeHeight45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       color: AppColor.mainColor,
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Icon(
                         Icons.search,
+                        size: Dimensions.iconSize17,
                       ),
                     ),
                   ),
