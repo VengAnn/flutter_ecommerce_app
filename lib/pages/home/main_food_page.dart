@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app_with_backend/home/food_page_body.dart';
+import 'package:flutter_e_commerce_app_with_backend/pages/home/food_page_body.dart';
 import 'package:flutter_e_commerce_app_with_backend/utils/app_colors.dart';
 import 'package:flutter_e_commerce_app_with_backend/utils/dimensions.dart';
 import 'package:flutter_e_commerce_app_with_backend/widgets/big_text.dart';
@@ -52,11 +52,12 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     height: Dimensions.iconSizeHeight45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      color: AppColor.mainColor,
+                      color: Colors.grey,
                     ),
                     child: Center(
                       child: Icon(
                         Icons.search,
+                        color: Colors.white,
                         size: Dimensions.iconSize17,
                       ),
                     ),
@@ -65,7 +66,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ),
             ),
             //Show screen on body
-            FoodPageBody(),
+            const Expanded(child: FoodPageBody()),
           ],
         ),
       ),

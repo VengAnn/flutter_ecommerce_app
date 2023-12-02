@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app_with_backend/utils/dimensions.dart';
 
 // ignore: must_be_immutable
 class SmallText extends StatelessWidget {
@@ -23,6 +22,7 @@ class SmallText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: TextAlign.justify,
       // overflow: textOverflow,
       style: TextStyle(
         fontFamily: 'Roboto',

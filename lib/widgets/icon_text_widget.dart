@@ -6,6 +6,7 @@ class IconAndTextReusableWidget extends StatelessWidget {
   final IconData? icondata;
   final Color colorIcons;
   final String text;
+  final double? iconSize;
   double? sizeText;
   IconAndTextReusableWidget({
     super.key,
@@ -13,6 +14,7 @@ class IconAndTextReusableWidget extends StatelessWidget {
     this.colorIcons = const Color(0xFFDDD4D2),
     required this.text,
     this.sizeText,
+    this.iconSize,
   });
 
   @override
@@ -22,6 +24,7 @@ class IconAndTextReusableWidget extends StatelessWidget {
         Icon(
           icondata,
           color: colorIcons,
+          size: iconSize,
         ),
         const SizedBox(width: 5.0),
         SmallText(
