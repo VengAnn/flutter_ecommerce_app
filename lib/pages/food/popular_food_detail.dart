@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app_with_backend/controller/cart_controller.dart';
 import 'package:flutter_e_commerce_app_with_backend/controller/popular_product_controller.dart';
-import 'package:flutter_e_commerce_app_with_backend/pages/cart_page/cart_page.dart';
 import 'package:flutter_e_commerce_app_with_backend/routes/route_helper.dart';
 import 'package:flutter_e_commerce_app_with_backend/utils/app_colors.dart';
 import 'package:flutter_e_commerce_app_with_backend/widgets/app_icon.dart';
@@ -15,8 +14,8 @@ import '../../widgets/app_column.dart';
 // ignore: must_be_immutable
 class PopularFoodDetail extends StatelessWidget {
   int pageId;
-
-  PopularFoodDetail({super.key, required this.pageId});
+  String page;
+  PopularFoodDetail({super.key, required this.pageId, required this.page});
 
   @override
   Widget build(BuildContext context) {
@@ -53,48 +52,52 @@ class PopularFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(RouteHelper.getInitial());
+                    if (page == "cartpage") {
+                      Get.toNamed(RouteHelper.getCartPage());
+                    } else {
+                      Get.toNamed(RouteHelper.getInitial());
+                    }
                   },
                   child: const AppIcon(icon: Icons.arrow_back_ios),
                 ),
                 GetBuilder<PopularProductController>(
                   builder: (controller) {
-                    return Stack(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => const CartPage());
-                          },
-                          child: const AppIcon(
+                    return GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getCartPage());
+                      },
+                      child: Stack(
+                        children: [
+                          const AppIcon(
                             icon: Icons.shopping_cart_outlined,
                             backgroundColor: AppColor.mainColor,
                             //  iconColor: AppColor.mainColor,
                           ),
-                        ),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? const Positioned(
-                                right: 0,
-                                top: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  size: 20,
-                                  iconColor: Colors.transparent,
-                                ),
-                              )
-                            : Container(),
-                        //text number cart
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                                right: 5,
-                                top: 0,
-                                child: BigText(
-                                  text: controller.totalItems.toString(),
-                                  size: 12,
-                                  color: Colors.white,
-                                ),
-                              )
-                            : Container(),
-                      ],
+                          controller.totalItems >= 1
+                              ? const Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: 20,
+                                    iconColor: Colors.transparent,
+                                  ),
+                                )
+                              : Container(),
+                          //text number cart
+                          controller.totalItems >= 1
+                              ? Positioned(
+                                  right: 5,
+                                  top: 0,
+                                  child: BigText(
+                                    text: controller.totalItems.toString(),
+                                    size: 12,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : Container(),
+                        ],
+                      ),
                     );
                   },
                 ),

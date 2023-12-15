@@ -15,8 +15,9 @@ import '../../utils/app_constant.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
-
-  const RecommendedFoodDetail({required this.pageId, super.key});
+  final String page;
+  const RecommendedFoodDetail(
+      {required this.pageId, required this.page, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,49 +36,54 @@ class RecommendedFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(RouteHelper.initial); //go to main Page Food
+                    if (page == "cartpage") {
+                      Get.toNamed(RouteHelper.getCartPage());
+                    } else {
+                      Get.toNamed(
+                          RouteHelper.getInitial()); //go to main Page Food
+                    }
                   },
                   child: const AppIcon(icon: Icons.clear),
                 ),
                 //const AppIcon(icon: Icons.shopping_cart_outlined),
                 GetBuilder<PopularProductController>(
                   builder: (controller) {
-                    return Stack(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => const CartPage());
-                          },
-                          child: const AppIcon(
+                    return GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getCartPage());
+                      },
+                      child: Stack(
+                        children: [
+                          const AppIcon(
                             icon: Icons.shopping_cart_outlined,
                             backgroundColor: AppColor.mainColor,
                             //  iconColor: AppColor.mainColor,
                           ),
-                        ),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? const Positioned(
-                                right: 0,
-                                top: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  size: 20,
-                                  iconColor: Colors.transparent,
-                                ),
-                              )
-                            : Container(),
-                        //text number cart
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                                right: 5,
-                                top: 0,
-                                child: BigText(
-                                  text: controller.totalItems.toString(),
-                                  size: 12,
-                                  color: Colors.white,
-                                ),
-                              )
-                            : Container(),
-                      ],
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? const Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: 20,
+                                    iconColor: Colors.transparent,
+                                  ),
+                                )
+                              : Container(),
+                          //text number cart
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 5,
+                                  top: 0,
+                                  child: BigText(
+                                    text: controller.totalItems.toString(),
+                                    size: 12,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : Container(),
+                        ],
+                      ),
                     );
                   },
                 ),

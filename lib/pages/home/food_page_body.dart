@@ -116,7 +116,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   onTap: () {
                                     Get.toNamed(
                                       RouteHelper.getPopularFood(
-                                          currentPageValue), //pass index for Route getPopularFood Go to popularDetail
+                                          currentPageValue,
+                                          "home"), //pass index for Route getPopularFood Go to popularDetail
                                     );
                                   },
                                   child: Container(
@@ -272,8 +273,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                 //image Section
                                 GestureDetector(
                                   onTap: () {
-                                    Get.toNamed(
-                                        RouteHelper.getRecommendedFood(index));
+                                    Get.toNamed(RouteHelper.getRecommendedFood(
+                                        index, "home"));
                                   },
                                   child: Container(
                                     height: Dimensions.listviewContainer,
